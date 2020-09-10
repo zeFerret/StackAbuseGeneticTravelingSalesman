@@ -50,7 +50,6 @@ public class TravelingSalesman {
     // predefined in the attribute selectionType
     public List<SalesmanGenome> selection(List<SalesmanGenome> population) {
         List<SalesmanGenome> selected = new ArrayList<>();
-        SalesmanGenome winner;
         for (int i = 0; i < reproductionSize; i++) {
             if (selectionType == SelectionType.ROULETTE) {
                 selected.add(rouletteSelection(population));
