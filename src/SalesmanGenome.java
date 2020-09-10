@@ -1,13 +1,13 @@
 import java.util.*;
 
-public class SalesmanGenome implements Comparable {
+public class SalesmanGenome implements Comparable<SalesmanGenome> {
     List<Integer> genome;
     int[][] travelPrices;
     int startingCity;
-    int numberOfCities = 0;
+    int numberOfCities;
     int fitness;
 
-    public SalesmanGenome(int numberOfCities, int[][] travelPrices, int startingCity){
+    public SalesmanGenome(int numberOfCities, int[][] travelPrices, int startingCity) {
         this.travelPrices = travelPrices;
         this.startingCity = startingCity;
         this.numberOfCities = numberOfCities;
@@ -15,7 +15,7 @@ public class SalesmanGenome implements Comparable {
         fitness = this.calculateFitness();
     }
 
-    public SalesmanGenome(List<Integer> permutationOfCities, int numberOfCities, int[][] travelPrices, int startingCity){
+    public SalesmanGenome(List<Integer> permutationOfCities, int numberOfCities, int[][] travelPrices, int startingCity) {
         genome = permutationOfCities;
         this.travelPrices = travelPrices;
         this.startingCity = startingCity;
@@ -23,21 +23,21 @@ public class SalesmanGenome implements Comparable {
         fitness = this.calculateFitness();
     }
 
-    public int calculateFitness(){
+    public int calculateFitness() {
         int fitness = 0;
         int currentCity = startingCity;
-        for ( int gene : genome) {
+        for (int gene : genome) {
             fitness += travelPrices[currentCity][gene];
             currentCity = gene;
         }
-        fitness += travelPrices[genome.get(numberOfCities-2)][startingCity];
+        fitness += travelPrices[genome.get(numberOfCities - 2)][startingCity];
         return fitness;
     }
 
-    private List<Integer> randomSalesman(){
+    private List<Integer> randomSalesman() {
         List<Integer> result = new ArrayList<Integer>();
-        for(int i=0; i<numberOfCities; i++) {
-            if(i!=startingCity)
+        for (int i = 0; i < numberOfCities; i++) {
+            if (i != startingCity)
                 result.add(i);
         }
         Collections.shuffle(result);
@@ -65,7 +65,7 @@ public class SalesmanGenome implements Comparable {
         StringBuilder sb = new StringBuilder();
         sb.append("Path: ");
         sb.append(startingCity);
-        for ( int gene: genome ) {
+        for (int gene : genome) {
             sb.append(" ");
             sb.append(gene);
         }
@@ -78,13 +78,8 @@ public class SalesmanGenome implements Comparable {
 
 
     @Override
-    public int compareTo(Object o) {
-        SalesmanGenome genome = (SalesmanGenome) o;
-        if(this.fitness > genome.getFitness())
-            return 1;
-        else if(this.fitness < genome.getFitness())
-            return -1;
-        else
-            return 0;
+    public int compareTo(SalesmanGenome genome) {
+        return Integer.compare(this.fitness, genome.getFitness());
     }
+
 }

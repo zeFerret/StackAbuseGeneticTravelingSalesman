@@ -1,11 +1,11 @@
 import java.util.*;
 
 public class Main {
-    public static void printTravelPrices(int[][] travelPrices, int numberOfCities){
-        for(int i = 0; i<numberOfCities; i++){
-            for(int j=0; j<numberOfCities; j++){
+    public static void printTravelPrices(int[][] travelPrices, int numberOfCities) {
+        for (int i = 0; i < numberOfCities; i++) {
+            for (int j = 0; j < numberOfCities; j++) {
                 System.out.print(travelPrices[i][j]);
-                if(travelPrices[i][j]/10 == 0)
+                if (travelPrices[i][j] / 10 == 0)
                     System.out.print("  ");
                 else
                     System.out.print(' ');
@@ -15,12 +15,12 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        int numberOfCities = 3;
+        int numberOfCities = 5;
         int[][] travelPrices = new int[numberOfCities][numberOfCities];
-        for(int i = 0; i<numberOfCities; i++){
-            for(int j=0; j<=i; j++){
+        for (int i = 0; i < numberOfCities; i++) {
+            for (int j = 0; j <= i; j++) {
                 Random rand = new Random();
-                if(i==j)
+                if (i == j)
                     travelPrices[i][j] = 0;
                 else {
                     travelPrices[i][j] = rand.nextInt(100);
@@ -29,9 +29,9 @@ public class Main {
             }
         }
 
-        printTravelPrices(travelPrices,numberOfCities);
+        printTravelPrices(travelPrices, numberOfCities);
 
-        ÜberSalesmensch geneticAlgorithm = new ÜberSalesmensch(numberOfCities, SelectionType.ROULETTE, travelPrices, 0, 0);
+        TravelingSalesman geneticAlgorithm = new TravelingSalesman(numberOfCities, SelectionType.ROULETTE, travelPrices, 0, 0);
         SalesmanGenome result = geneticAlgorithm.optimize();
         System.out.println(result);
 

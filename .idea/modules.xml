@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/StackAbuseGeneticTravelingSalesman.iml" filepath="$PROJECT_DIR$/StackAbuseGeneticTravelingSalesman.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GeneticProgrammingTSP.iml" filepath="$PROJECT_DIR$/GeneticProgrammingTSP.iml" />
     </modules>
   </component>
 </project>
